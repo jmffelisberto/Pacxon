@@ -57,3 +57,22 @@ The State Pattern enables us to distinguish the representation and behaviour of 
 with different code, considering the internal current state.
 
 **Consequences:** more organized developing process, making it faster to correct/add code for a known matter. Increases scalability tolerance.
+
+3.
+**Problem in context.**
+One of the challenges in the development of this game is efficiently creating instances of various in-game entities, such as characters, power-ups, or obstacles. These entities might have different implementations based on game conditions or levels, making it essential to encapsulate their creation and ensure a flexible and maintainable design.
+
+**The pattern.**
+To overcome this problem, we chose the Factory Pattern, providing an interface for creating objects in a superclass but allows subclasses to alter the type of objects that will be created. This pattern addresses the problem of creating instances of classes without specifying their exact class types. It promotes loose coupling by delegating the responsibility of object instantiation to subclasses.
+
+**Implementation.**
+Its intent is to separate the development process between 7 phases:
+- Make all products implement the same interface: define an interface that declares methods making sense for all products.
+- Add an empty factory method within the creator class: add a factory method in the creator class with a return type matching the common product interface.
+- Refactor constructor references to factory method calls: in the creator class code, replace all references to product constructors one by one with calls to the factory method. Extract the product creation code into the factory method. You may need to add a temporary parameter to the factory method to control the type of product returned.
+- Handle potentially messy factory method code: the factory method code may initially look unattractive, with a large switch statement choosing which product class to instantiate. Don't worry; we'll address this soon.
+- Create subclasses for each product type: create subclasses for each product type listed in the factory method. Override the factory method in the subclasses and extract the appropriate portions of the construction code from the base method.
+- Consider reusing a control parameter in subclasses: if there are many product types and creating subclasses for all doesn't make sense, you can reuse a control parameter from the base class in the subclasses. For example, passing an argument to the factory method of the base class to control the desired product type.
+- Handle empty base factory method: if, after all extractions, the base factory method is empty, make it abstract. If there's anything left, you can make it the default behavior of the method.
+
+**Consequences:** The Factory Method pattern offers flexibility and loose coupling, enabling the seamless addition of new products without modifying existing code. It adheres to design principles like the Single Responsibility Principle and supports scalability, contributing to a maintainable and extensible codebase.
