@@ -76,3 +76,21 @@ Its intent is to separate the development process between 7 phases:
 - Handle empty base factory method: if, after all extractions, the base factory method is empty, make it abstract. If there's anything left, you can make it the default behavior of the method.
 
 **Consequences:** The Factory Method pattern offers flexibility and loose coupling, enabling the seamless addition of new products without modifying existing code. It adheres to design principles like the Single Responsibility Principle and supports scalability, contributing to a maintainable and extensible codebase.
+
+4.
+**Problem in context.**
+One of the fundamental challenges in game development is managing the flow of the game, especially in real-time games like Pac-Xon. The game needs to continuously check for player inputs, update the game state, and render the updated state to the screen. This continuous cycle is crucial for creating a dynamic and responsive gaming experience.
+
+**The pattern.**
+To address this, the Game Loop pattern is an ideal choice. It is a behavioral design pattern that continually runs during the game, updating game logic and rendering the game state at a consistent rate. This pattern is essential for keeping the game's progression smooth and responsive.
+
+
+**Implementation:**
+- Initialization Phase: Set up the initial game state, load resources, and initialize game entities.
+- Start of the loop: The loop begins after initialization, continuously running until the game ends.
+- Process Input: Gather and process player inpputs or other external events.
+- Update Game State: Based on the inputs and existing game state, update game entities. This includes movement, collision detection, and game logic.
+- Render: Draw the updated game state to the screen. This is where the game's visual representation is updated.
+- Check Conditions: At the end of each loop, check for any conditions that might end the game, such as player lives, completion of objectives, or exit commands.
+
+**Consequences:** The Game Loop pattern provides a structured way to handle real-time changes in the game. It ensures that the game responds promptly to user inputs and that the game state is consistently updated and rendered. This pattern is crucial for maintaining the fluidity and responsiveness of the game, making it an essential component of most interactive games.
