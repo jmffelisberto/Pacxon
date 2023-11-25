@@ -32,10 +32,28 @@ The hero starts with 3 lives and, obviously, the score and the progress(%) start
 The most central question we faced at the start of the developing of this project was to choose the way we would have to structure the game, i.e., how to divide and connect each part of the game development.
 
 **The pattern.**
-To overcome this problem, we chose the Model-View-Control Architectural Pattern. Its intent is to separate the development process between 3 components:
+To overcome this problem, we chose the Model-View-Control Architectural Pattern, a very common pattern in GUI application development that aims to sort the functions used in the program by its role in the context.
+Ultimately, to structure the codebase of an application.
+
+**Implementation.**
+Its intent is to separate the development process between 3 components:
 - Model: represent and manage game logic, assuring the correct execution of it, not caring how to graphically display the game elements.
 - View: represent the user interface, being responsible for the graphical representation of the game elements and placing them into the arena.
 - Controller: even though this part is not going to feature in this phase of delivery, it will be responsible for the exchanges of information between the Model and the View layer
-Manages input from the user and sends update signals to those two layers, to change the internal state and the corresponding graphical display.
+  Manages input from the user and sends update signals to those two layers, to change the internal state and the corresponding graphical display.
+
+**Consequences:** more organized developing process, making it faster to correct/add code for a known matter. Increases scalability tolerance.
+
+2.
+**Problem in context.**
+We identified 2 distinct phases of the game, and had to find a way to choose which phase the game was currently in, as it could not be in both simultaneously.
+
+**The pattern.**
+To overcome this problem, we chose the State Pattern, allowing objects to alter their behaviour regarding the internal state of the game (it's a behavioral design pattern).
+In our case, it will be particularly crucial as we will have to differ the behaviour of our display, given if it is in the main menu or in the playing phase itself.
+
+**Implementation.**
+The State Pattern enables us to distinguish the representation and behaviour of the main menu (MenuState) and the proper game (GameState), overriding the functions that are responsible for the calls to the Controller and the Viewer
+with different code, considering the internal current state.
 
 **Consequences:** more organized developing process, making it faster to correct/add code for a known matter. Increases scalability tolerance.
