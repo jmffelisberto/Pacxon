@@ -25,6 +25,11 @@ The hero starts with 3 lives and, obviously, the score and the progress(%) start
   - There are two types of power ups, the beer and the heart. In the case of the beer, if it is catched by the hero, all the enemies stop in their positions 5 seconds, in the case of the heart, the hero gains one life. 
   - There are two types of outcome in the game, or the user can fill at least 80% of the map, ad goes through to the next level, or the hero loses all the lives and have to start from the beggining, by going back all the way to level 1. Each level will go up in difficulty, the enemyies ,will go up in number, and also the speed of them will also increase.
 
+
+## UML Class Diagram
+
+![UML class diagram](docs/diagram.png)
+
 ## Design
 
 1. 
