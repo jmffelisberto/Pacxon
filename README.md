@@ -28,7 +28,7 @@ The hero starts with 3 lives and, obviously, the score and the progress(%) start
 
 ## UML Class Diagram
 
-![UML class diagram](docs/diagram.png)
+![UML class diagram](docs/Pac-Xon.png)
 
 ## Design
 
