@@ -45,7 +45,7 @@ public class Main {
         int FPS = 10;
         int frameTime = 1000 / FPS;
 
-        //for state changes...
+        //for state changes... need to implement control
 
         gui.close();
     }
