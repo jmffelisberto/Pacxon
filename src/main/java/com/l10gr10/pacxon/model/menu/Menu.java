@@ -33,11 +33,15 @@ public class Menu {
         return currentOption == i;
     }
 
+    public boolean isStartSelected() {
+        return isSelected(0);
+    }
+
     public boolean isExitSelected() {
         return isSelected(1);
     }
 
-    public boolean isStartSelected() {
-        return isSelected(0);
+    public boolean isRulesSelected() {
+        return isSelected(2);
     }
 }
