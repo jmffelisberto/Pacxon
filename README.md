@@ -72,6 +72,10 @@ with different code, considering the internal current state.
 
 **Consequences:** more organized developing process, making it faster to correct/add code for a known matter. Increases scalability tolerance.
 
+<p align="center">
+  <img src="docs/StatePattern_diagram.png" alt="MVC diagram" width="300"/>
+</p>
+
 3.
 **Problem in context.**
 One of the challenges in the development of this game is efficiently creating instances of various in-game entities, such as characters, power-ups, or obstacles. These entities might have different implementations based on game conditions or levels, making it essential to encapsulate their creation and ensure a flexible and maintainable design.
@@ -90,6 +94,10 @@ Its intent is to separate the development process between 7 phases:
 - Handle empty base factory method: if, after all extractions, the base factory method is empty, make it abstract. If there's anything left, you can make it the default behavior of the method.
 
 **Consequences:** The Factory Method pattern offers flexibility and loose coupling, enabling the seamless addition of new products without modifying existing code. It adheres to design principles like the Single Responsibility Principle and supports scalability, contributing to a maintainable and extensible codebase.
+
+<p align="center">
+  <img src="docs/StatePattern_diagram.png" alt="MVC diagram" width="300"/>
+</p>
 
 4.
 **Problem in context.**
