@@ -5,6 +5,7 @@ import com.l10gr10.pacxon.model.Position;
 import java.io.IOException;
 
 public interface GUI {
+    enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT};
     void close() throws IOException;
 
     void clear();
@@ -12,4 +13,6 @@ public interface GUI {
     void refresh() throws IOException;
 
     void drawText(Position position, String text, String color);
+
+    GUI.ACTION getNextAction() throws IOException;
 }

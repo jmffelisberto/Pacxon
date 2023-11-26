@@ -9,7 +9,7 @@ public class Menu {
     private int currentOption = 0; //first option
 
     public Menu(){
-        this.options = Arrays.asList("Play", "Rules", "Exit");
+        this.options = Arrays.asList("Play", "Exit");   //rules?
     }
 
     //logic for menu
@@ -41,9 +41,9 @@ public class Menu {
         return isSelected(1);
     }
 
-    public boolean isRulesSelected() {
+/*    public boolean isRulesSelected() {
         return isSelected(2);
-    }
+    }*/
 
     public String getOption(int i) {
         return options.get(i);
