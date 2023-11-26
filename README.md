@@ -94,3 +94,18 @@ To address this, the Game Loop pattern is an ideal choice. It is a behavioral de
 - Check Conditions: At the end of each loop, check for any conditions that might end the game, such as player lives, completion of objectives, or exit commands.
 
 **Consequences:** The Game Loop pattern provides a structured way to handle real-time changes in the game. It ensures that the game responds promptly to user inputs and that the game state is consistently updated and rendered. This pattern is crucial for maintaining the fluidity and responsiveness of the game, making it an essential component of most interactive games.
+
+5.
+**Problem in Context**
+In our game, there's a need for a centralized control and accessp point for the main game sate. This could include all the fundamental's to the gam's operaions and should be consistently accessible thoughout the game without creating multiple instances.
+
+**The pattern**
+The Singleton pattern ensures that only one instance of the class managing th main game state exists throughout the gameś lifecycle.
+
+**Implementation:**
+- Private Constructor: Make the constructor of the class private to prevent instantiation from outside the class.
+- Private Static Instance: Create a private static instane of the class itself within the class.
+- Public Static Method: Provide a static method, i.e., getInstance(), that returns the instance of the game. Creates a new instance if on does not exist and returns the existing instance otherwise.
+
+**Consequences**
+This approach ensures controlled access to a single, global instance, crucial for consistent handling of shared resources like game settings. While Singleton's implementation is straightforward and allows for easy access from anywhere in the application, it also introduces a global state, which should be used carefully to avoid issues with maintainability and testing. This method ensures that critical game components are reliably and uniformly managed throughout the game's lifecycle.
