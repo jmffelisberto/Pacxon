@@ -67,4 +67,14 @@ public class LanternaGUI implements GUI {
     public void close() throws IOException {
         screen.close();
     }
+
+    @Override
+    public void clear() {
+        screen.clear();
+    }
+
+    @Override
+    public void refresh() throws IOException {
+        screen.refresh();
+    }
 }
