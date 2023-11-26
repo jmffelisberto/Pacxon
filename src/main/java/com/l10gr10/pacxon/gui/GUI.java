@@ -1,5 +1,7 @@
 package com.l10gr10.pacxon.gui;
 
+import com.l10gr10.pacxon.model.Position;
+
 import java.io.IOException;
 
 public interface GUI {
@@ -8,4 +10,6 @@ public interface GUI {
     void clear();
 
     void refresh() throws IOException;
+
+    void drawText(Position position, String text, String color);
 }

@@ -44,4 +44,8 @@ public class Menu {
     public boolean isRulesSelected() {
         return isSelected(2);
     }
+
+    public String getOption(int i) {
+        return options.get(i);
+    }
 }

@@ -3,13 +3,12 @@ package com.l10gr10.pacxon.gui;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.l10gr10.pacxon.model.Position;
 
 import java.awt.*;
 import java.io.File;
@@ -76,5 +75,12 @@ public class LanternaGUI implements GUI {
     @Override
     public void refresh() throws IOException {
         screen.refresh();
+    }
+
+    @Override
+    public void drawText(Position position, String text, String color) {
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setForegroundColor(TextColor.Factory.fromString(color));
+        tg.putString(position.getX(), position.getY(), text);
     }
 }
