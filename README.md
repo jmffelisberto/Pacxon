@@ -30,6 +30,11 @@ The hero starts with 3 lives and, obviously, the score and the progress(%) start
 
 ![UML class diagram](docs/Pac-Xon.png)
 
+## MockUps
+![Menu mockup](docs/Menu.jpg)
+![Icons mockup](docs/Icons.jpg)
+![InGame mockup](docs/InGame.jpg)
+
 ## Design
 
 1. 
