@@ -22,4 +22,5 @@ public class Board {
     }
 
     // Other methods related to the board
+
 }
