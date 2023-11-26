@@ -131,3 +131,7 @@ The Singleton pattern ensures that only one instance of the class managing the m
 
 **Consequences**
 This approach ensures controlled access to a single, global instance, crucial for consistent handling of shared resources like game settings. While Singleton's implementation is straightforward and allows for easy access from anywhere in the application, it also introduces a global state, which should be used carefully to avoid issues with maintainability and testing. This method ensures that critical game components are reliably and uniformly managed throughout the game's lifecycle.
+
+<p align="center">
+  <img src="docs/Singleton_diagram.png" alt="MVC diagram" width="250"/>
+</p>
