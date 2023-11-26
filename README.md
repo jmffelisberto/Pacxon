@@ -73,7 +73,7 @@ with different code, considering the internal current state.
 **Consequences:** more organized developing process, making it faster to correct/add code for a known matter. Increases scalability tolerance.
 
 <p align="center">
-  <img src="docs/StatePattern_diagram.png" alt="MVC diagram" width="300"/>
+  <img src="docs/StatePattern_diagram.png" alt="MVC diagram" width="600"/>
 </p>
 
 3.
@@ -96,7 +96,7 @@ Its intent is to separate the development process between 7 phases:
 **Consequences:** The Factory Method pattern offers flexibility and loose coupling, enabling the seamless addition of new products without modifying existing code. It adheres to design principles like the Single Responsibility Principle and supports scalability, contributing to a maintainable and extensible codebase.
 
 <p align="center">
-  <img src="docs/StatePattern_diagram.png" alt="MVC diagram" width="300"/>
+  <img src="docs/StatePattern_diagram.png" alt="MVC diagram" width="600"/>
 </p>
 
 4.
