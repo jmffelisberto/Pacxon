@@ -5,8 +5,9 @@ public class Display {
     private Board board;
     private Stats stats;
 
-    public Display(int width, int height) {
+    public Display(int width, int height, , ) {
         this.board = new Board(width, height);
+        this.stats = new Stats();
     }
 
     public Board getBoard() {

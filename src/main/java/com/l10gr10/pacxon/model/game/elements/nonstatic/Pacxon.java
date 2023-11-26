@@ -1,6 +1,8 @@
-package com.l10gr10.pacxon.model.game.elements;
+package com.l10gr10.pacxon.model.game.elements.nonstatic;
 
-public class Pacxon extends Element{
+import com.l10gr10.pacxon.model.game.elements.Element;
+
+public class Pacxon extends Element {
 
     private int health;
 
