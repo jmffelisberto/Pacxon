@@ -73,7 +73,7 @@ with different code, considering the internal current state.
 **Consequences:** more organized developing process, making it faster to correct/add code for a known matter. Increases scalability tolerance.
 
 <p align="center">
-  <img src="docs/StatePattern_diagram.png" alt="MVC diagram" width="300"/>
+  <img src="docs/StatePattern_diagram.png" alt="MVC diagram" width="600"/>
 </p>
 
 3.
@@ -96,7 +96,7 @@ Its intent is to separate the development process between 7 phases:
 **Consequences:** The Factory Method pattern offers flexibility and loose coupling, enabling the seamless addition of new products without modifying existing code. It adheres to design principles like the Single Responsibility Principle and supports scalability, contributing to a maintainable and extensible codebase.
 
 <p align="center">
-  <img src="docs/StatePattern_diagram.png" alt="MVC diagram" width="300"/>
+  <img src="docs/StatePattern_diagram.png" alt="MVC diagram" width="600"/>
 </p>
 
 4.
@@ -131,3 +131,7 @@ The Singleton pattern ensures that only one instance of the class managing the m
 
 **Consequences**
 This approach ensures controlled access to a single, global instance, crucial for consistent handling of shared resources like game settings. While Singleton's implementation is straightforward and allows for easy access from anywhere in the application, it also introduces a global state, which should be used carefully to avoid issues with maintainability and testing. This method ensures that critical game components are reliably and uniformly managed throughout the game's lifecycle.
+
+<p align="center">
+  <img src="docs/Singleton_diagram.png" alt="MVC diagram" width="250"/>
+</p>
