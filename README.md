@@ -48,11 +48,15 @@ Ultimately, to structure the codebase of an application.
 **Implementation.**
 Its intent is to separate the development process between 3 components:
 - Model: represent and manage game logic, assuring the correct execution of it, not caring how to graphically display the game elements.
-- View: represent the user interface, being responsible for the graphical representation of the game elements and placing them into the arena.
+- View: represent the user interface, being responsible for the graphical representation of the game elements and placing them into the arena. It also sends user actions to the Controller.
 - Controller: even though this part is not going to feature in this phase of delivery, it will be responsible for the exchanges of information between the Model and the View layer
   Manages input from the user and sends update signals to those two layers, to change the internal state and the corresponding graphical display.
 
 **Consequences:** more organized developing process, making it faster to correct/add code for a known matter. Increases scalability tolerance.
+
+<p align="center">
+  <img src="docs/MVC_diagram.png" alt="MVC diagram" width="300"/>
+</p>
 
 2.
 **Problem in context.**
