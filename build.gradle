@@ -1,17 +1,25 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
-group = 'com.jmffelisberto.hero'
+group = 'com.l10gr10.pacxon'
 version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
+application {
+    mainClass.set("Application")
+}
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation group: 'com.googlecode.lanterna', name:
+            'lanterna', version: '3.1.1'
 }
 
 test {
