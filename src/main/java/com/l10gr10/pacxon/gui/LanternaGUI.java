@@ -62,4 +62,9 @@ public class LanternaGUI implements GUI {
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
+
+    @Override
+    public void close() throws IOException {
+        screen.close();
+    }
 }

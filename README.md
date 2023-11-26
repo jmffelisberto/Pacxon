@@ -97,10 +97,10 @@ To address this, the Game Loop pattern is an ideal choice. It is a behavioral de
 
 5.
 **Problem in Context**
-In our game, there's a need for a centralized control and accessp point for the main game sate. This could include all the fundamental's to the gam's operaions and should be consistently accessible thoughout the game without creating multiple instances.
+In our game, there's a need for a centralized control and accessp point for the main game sate. This could include all the fundamental's to the game's operations and should be consistently accessible thoughout the game without creating multiple instances.
 
 **The pattern**
-The Singleton pattern ensures that only one instance of the class managing th main game state exists throughout the gameś lifecycle.
+The Singleton pattern ensures that only one instance of the class managing the main game state exists throughout the game's lifecycle.
 
 **Implementation:**
 - Private Constructor: Make the constructor of the class private to prevent instantiation from outside the class.
