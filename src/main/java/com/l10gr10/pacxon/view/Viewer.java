@@ -23,5 +23,4 @@ public abstract class Viewer<Model> {
         drawElements(gui);
         gui.refresh();
     }
-
 }
