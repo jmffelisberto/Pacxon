@@ -38,27 +38,6 @@ public class DisplayBuilder {
         return lines.size();
     }
 
-    protected List<Monster> createMonsters() {
-        List<Monster> monsters = new ArrayList<>();
-
-        for (int y = 0; y < lines.size(); y++) {
-            String line = lines.get(y);
-            for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == 'M') monsters.add(new Monster(x, y));
-        }
-
-        return monsters;
-    }
-
-    protected Pacxon createPacxon() {
-        for (int y = 0; y < lines.size(); y++) {
-            String line = lines.get(y);
-            for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == 'H') return new Pacxon(x, y);
-        }
-        return null;
-    }
-
     public Display generateDisplay(){
         Display display = new Display(getWidth(), getHeight(), 0, 0);
 

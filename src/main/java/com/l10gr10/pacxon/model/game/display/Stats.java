@@ -8,7 +8,6 @@ public class Stats {
     public Stats(int score, int percentage) {
         this.score = score;
         this.percentage = percentage;
-        // Initialize the states based on the provided width and height
     }
 
     public int getScore() {
@@ -18,6 +17,4 @@ public class Stats {
     public int getPercentage() {
         return percentage;
     }
-
-    // Other methods related to the stats
 }
