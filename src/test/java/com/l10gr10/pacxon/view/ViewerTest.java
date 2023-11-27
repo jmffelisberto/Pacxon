@@ -8,21 +8,12 @@ class ViewerTest {
 
     @Test
     public void testConstructorAndGetModel() {
-        // Create a sample model
         String sampleModel = "Sample Model";
-
-        // Create a viewer with the sample model
         Viewer<String> viewer = new Viewer<String>(sampleModel) {
             @Override
             protected void drawElements(GUI gui) {
-
-                // Do nothing for the purpose of this test
             }
         };
-
-        // Test whether the constructor correctly sets the model
         assertEquals(sampleModel, viewer.getModel());
     }
-
-    // You can add more tests based on your specific requirements
 }
