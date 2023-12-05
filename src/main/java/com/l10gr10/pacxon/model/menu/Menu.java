@@ -5,47 +5,46 @@ import java.util.List;
 
 public class Menu {
 
-    private final List<String> options;
-    private int currentOption = 0; //first option
+    private final List<String> entries;
+    private int currentEntry = 0;
 
-    public Menu(){
-        this.options = Arrays.asList("Play", "Exit");   //rules?
+    public Menu() {
+        this.entries = Arrays.asList("Play", "Rules", "Exit");
     }
 
-    //logic for menu
-
-    public int getNumOfOptions() {
-        return this.options.size();
+    public int getCurrentEntry() {
+        return currentEntry;
     }
 
-    public void nextOption() {
-         currentOption++;
-         if (currentOption > getNumOfOptions() - 1)
-             currentOption = 0;
+    public boolean isSelected(int index) {
+        return index == getCurrentEntry();
     }
 
-    public void previousOption() {
-        currentOption--;
-        if (currentOption < 0)
-            currentOption = getNumOfOptions() - 1;
-    }
-    public boolean isSelected(int i) {
-        return currentOption == i;
-    }
-
-    public boolean isStartSelected() {
+    public boolean isSelectedPlay() {
         return isSelected(0);
     }
 
-    public boolean isExitSelected() {
+    public boolean isSelectedRules() {
         return isSelected(1);
     }
 
-/*    public boolean isRulesSelected() {
+    public boolean isSelectedExit() {
         return isSelected(2);
-    }*/
+    }
 
-    public String getOption(int i) {
-        return options.get(i);
+    public int getNumEntries() {
+        return entries.size();
+    }
+
+    public void nextEntry() {
+        currentEntry = (currentEntry + 1) % getNumEntries();
+    }
+
+    public void previousEntry() {
+        currentEntry = (currentEntry - 1 + getNumEntries()) % getNumEntries();
+    }
+
+    public String getEntryName(int index) {
+        return entries.get(index);
     }
 }

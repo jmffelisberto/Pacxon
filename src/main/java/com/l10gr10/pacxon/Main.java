@@ -9,44 +9,57 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
-
-    private static Main gameInstance;
+    private static Main instance;
+    private State currentState;
     private final LanternaGUI gui;
-    private State state;
 
     private Main() throws IOException, URISyntaxException, FontFormatException {
-        this.gui = new LanternaGUI(35, 35);
-        this.state = new MenuState(new Menu());
+        gui = new LanternaGUI(35, 35);
+        currentState = new MenuState(new Menu());
     }
 
     public static Main getInstance() throws IOException, URISyntaxException, FontFormatException {
-        if (gameInstance == null) {
-            gameInstance = new Main();
+        if (instance == null) {
+            instance = new Main();
         }
-        return gameInstance;
+        return instance;
     }
 
-    public void setState(State state) {
-        this.state = state;
+    public void setState(State newState) {
+        this.currentState = newState;
+    }
+
+    private void start() throws IOException {
+        final int FPS = 60;
+        final long frameTime = 1000 / FPS;
+
+        while (this.currentState != null) {
+            long startTime = System.currentTimeMillis();
+
+            currentState.step(this, gui, startTime);
+
+            long elapsedTime = System.currentTimeMillis() - startTime;
+            long sleepTime = frameTime - elapsedTime;
+
+            try {
+                if (sleepTime > 0) {
+                    Thread.sleep(sleepTime);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                e.printStackTrace();
+            }
+        }
+
+        gui.close();
     }
 
     public static void main(String[] args) {
         try {
-            Main.getInstance().kickstart(); // Use getInstance to obtain the instance
-        } catch (IOException | FontFormatException | URISyntaxException e) {
+            getInstance().start();
+        } catch (IOException | URISyntaxException | FontFormatException e) {
             e.printStackTrace();
         }
-    }
-
-    private void kickstart() throws IOException {
-        int FPS = 10;
-        int frameTime = 1000 / FPS;
-
-        //for state changes... need to implement control
-
-        gui.close();
     }
 }
