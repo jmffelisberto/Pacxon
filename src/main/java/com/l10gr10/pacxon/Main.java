@@ -1,52 +1,70 @@
 package com.l10gr10.pacxon;
 
+import com.l10gr10.pacxon.controller.MenuController;
+import com.l10gr10.pacxon.gui.GUI;
 import com.l10gr10.pacxon.gui.LanternaGUI;
 import com.l10gr10.pacxon.model.menu.Menu;
 import com.l10gr10.pacxon.states.MenuState;
-import com.l10gr10.pacxon.states.State;
+import com.l10gr10.pacxon.view.menu.MenuViewer;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
 
-    private static Main gameInstance;
     private final LanternaGUI gui;
-    private State state;
+    private MenuState menuState;
 
-    private Main() throws IOException, URISyntaxException, FontFormatException {
+    public Main() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(35, 35);
-        this.state = new MenuState(new Menu());
+        Menu menu = new Menu();
+        this.menuState = new MenuState(menu);
     }
 
-    public static Main getInstance() throws IOException, URISyntaxException, FontFormatException {
-        if (gameInstance == null) {
-            gameInstance = new Main();
+    public void start() throws IOException {
+        MenuViewer menuViewer = new MenuViewer(menuState.getModel());
+        MenuController menuController = new MenuController(menuState.getModel());
+
+        final int frameRate = 10;
+        final long frameTime = 1000 / frameRate;
+
+        while (true) {
+            long startTime = System.currentTimeMillis();
+
+            GUI.ACTION action = gui.getNextAction();
+            menuController.handleInput(action);
+
+            menuViewer.draw(gui);
+
+            if (menuState.getModel().isExitSelected() && action == GUI.ACTION.SELECT) {
+                break;
+            }
+
+            // Frame rate control
+            long endTime = System.currentTimeMillis();
+            long timeTaken = endTime - startTime;
+            long timeLeft = frameTime - timeTaken;
+            if (timeLeft > 0) {
+                try {
+                    Thread.sleep(timeLeft);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    e.printStackTrace();
+                }
+            }
         }
-        return gameInstance;
+
+        gui.close();
     }
 
-    public void setState(State state) {
-        this.state = state;
-    }
+
 
     public static void main(String[] args) {
         try {
-            Main.getInstance().kickstart(); // Use getInstance to obtain the instance
+            new Main().start();
         } catch (IOException | FontFormatException | URISyntaxException e) {
             e.printStackTrace();
         }
-    }
-
-    private void kickstart() throws IOException {
-        int FPS = 10;
-        int frameTime = 1000 / FPS;
-
-        //for state changes... need to implement control
-
-        gui.close();
     }
 }

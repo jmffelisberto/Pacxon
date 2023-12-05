@@ -6,6 +6,7 @@ public class Pacxon extends Element {
 
     private int health;
 
+
     public Pacxon(int x, int y){
         super(x, y);
         this.health = 3;
