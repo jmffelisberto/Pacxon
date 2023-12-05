@@ -6,43 +6,46 @@ import java.util.List;
 public class Menu {
 
     private final List<String> options;
-    private int currentOption = 0;
+    private int currentOption = 0; //first option
 
-    public Menu() {
-        // Adding more options like "Rules" or "Settings"
-        this.options = Arrays.asList("Play", "Rules", "Exit");
+    public Menu(){
+        this.options = Arrays.asList("Play", "Exit");   //rules?
     }
+
+    //logic for menu
 
     public int getNumOfOptions() {
         return this.options.size();
     }
 
     public void nextOption() {
-        currentOption = (currentOption + 1) % getNumOfOptions();
+         currentOption++;
+         if (currentOption > getNumOfOptions() - 1)
+             currentOption = 0;
     }
 
     public void previousOption() {
-        currentOption = (currentOption - 1 + getNumOfOptions()) % getNumOfOptions();
+        currentOption--;
+        if (currentOption < 0)
+            currentOption = getNumOfOptions() - 1;
+    }
+    public boolean isSelected(int i) {
+        return currentOption == i;
     }
 
-    public boolean isSelected(int index) {
-        return currentOption == index;
-    }
-
-    public String getOption(int index) {
-        return options.get(index);
-    }
-
-    // Utility methods for specific options, for readability
-    public boolean isPlaySelected() {
+    public boolean isStartSelected() {
         return isSelected(0);
     }
 
-    public boolean isRulesSelected() {
+    public boolean isExitSelected() {
         return isSelected(1);
     }
 
-    public boolean isExitSelected() {
+/*    public boolean isRulesSelected() {
         return isSelected(2);
+    }*/
+
+    public String getOption(int i) {
+        return options.get(i);
     }
 }
