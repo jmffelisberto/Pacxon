@@ -1,24 +1,22 @@
 package com.l10gr10.pacxon.model.game.elements.nonstatic;
 
+import com.l10gr10.pacxon.model.Position;
 import com.l10gr10.pacxon.model.game.elements.Element;
 
 public class Pacxon extends Element {
+    private int lives;
 
-    private int health;
-
-    public Pacxon(int x, int y){
-        super(x, y);
-        this.health = 3;
+    public Pacxon(Position position, int lives) {
+        super(position);
+        this.lives = lives;
     }
 
-    public void increaseHP() {
-        this.health++;
-    }
-    public void decreaseHP() {
-        this.health--;
+    public int getLives() {
+        return lives;
     }
 
-    public int getHealth() {
-        return health;
+    public void setLives(int lives) {
+        this.lives = lives;
     }
+
 }

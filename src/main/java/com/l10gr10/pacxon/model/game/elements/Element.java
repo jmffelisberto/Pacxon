@@ -6,8 +6,8 @@ public class Element {
 
     private Position position;
 
-    public Element(int x, int y){
-        this.position = new Position(x, y);
+    public Element(Position position){
+        this.position = new Position(position.getX(), position.getY());
     }
 
     public Position getPosition() {

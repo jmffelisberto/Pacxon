@@ -5,23 +5,18 @@ public class Display {
     private Board board;
     private Stats stats;
 
-    public Display(int width, int height, int score, int progress) {
+    public Display(int width, int height) {
+
         this.board = new Board(width, height);
-        this.stats = new Stats(score, progress);
+        this.stats = new Stats();
     }
 
     public Board getBoard() {
         return board;
     }
-    public void setBoard(Board board) {
-        this.board = board;
-    }
 
     public Stats getStats() {
         return stats;
-    }
-    public void setStats(Stats stats) {
-        this.stats = stats;
     }
 
 }

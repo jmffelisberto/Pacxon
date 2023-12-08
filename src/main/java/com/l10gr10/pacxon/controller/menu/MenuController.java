@@ -4,7 +4,7 @@ import com.l10gr10.pacxon.Main;
 import com.l10gr10.pacxon.controller.Controller;
 import com.l10gr10.pacxon.gui.GUI;
 import com.l10gr10.pacxon.model.menu.Menu;
-/*import com.l10gr10.pacxon.states.GameState;*/
+import com.l10gr10.pacxon.states.GameState;
 import com.l10gr10.pacxon.model.game.display.Display;
 
 public class MenuController extends Controller<Menu> {
@@ -25,7 +25,8 @@ public class MenuController extends Controller<Menu> {
                 if (getModel().isSelectedExit()) {
                     main.setState(null);
                 } else if (getModel().isSelectedPlay()) {
-/*                    main.changeState(new GameState(new Display(35, 35), main.getGui())); */
+                    Display display = new Display(35, 35);
+                    main.setState(new GameState(display));
                 } else if (getModel().isSelectedRules()) {
 
                 }

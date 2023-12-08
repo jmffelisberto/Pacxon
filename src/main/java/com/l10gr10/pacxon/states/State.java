@@ -7,13 +7,18 @@ import com.l10gr10.pacxon.view.Viewer;
 import java.io.IOException;
 
 public abstract class State<T> {
-    protected final T model;
+    private final T model;
+    private final Controller<T> controller;
+    private final Viewer<T> viewer;
 
     public State(T model) {
         this.model = model;
+        this.viewer = getViewer();
+        this.controller = getController();
     }
 
     protected abstract Viewer<T> getViewer();
+
     protected abstract Controller<T> getController();
 
     public T getModel() {
@@ -22,7 +27,7 @@ public abstract class State<T> {
 
     public void step(Main main, GUI gui, long time) throws IOException {
         GUI.ACTION action = gui.getNextAction();
-        getController().handleInput(main, action, time);
-        getViewer().draw(gui);
+        controller.handleInput(main, action, time);
+        viewer.draw(gui);
     }
 }
