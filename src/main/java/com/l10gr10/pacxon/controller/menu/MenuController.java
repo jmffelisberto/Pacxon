@@ -25,7 +25,7 @@ public class MenuController extends Controller<Menu> {
                 if (getModel().isSelectedExit()) {
                     main.setState(null);
                 } else if (getModel().isSelectedPlay()) {
-                    Display display = new Display(35, 35);
+                    Display display = new Display(35, 20);
                     main.setState(new GameState(display));
                 } else if (getModel().isSelectedRules()) {
 

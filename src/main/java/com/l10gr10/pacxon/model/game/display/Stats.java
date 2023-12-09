@@ -11,6 +11,15 @@ public class Stats {
         this.progressPercentage = 0;
     }
 
+    public int getScore() {
+        return score;
+    }
+    public int getLives() {
+        return lives;
+    }
 
+    public int getProgressPercentage() {
+        return progressPercentage;
+    }
 }
 

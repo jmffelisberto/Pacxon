@@ -25,5 +25,22 @@ public class Board {
         this.height = height;
         this.blocks = new Block[height][width];
         this.beers = new ArrayList<>();
+        initializeBoard();
     }
+
+    private void initializeBoard() {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                boolean isPerimeter = x == 0 || y == 0 || x == width - 1 || y == height - 1;
+                Position position = new Position(x, y);
+                blocks[y][x] = new Block(position, isPerimeter);
+            }
+        }
+    }
+
+    public Block[][] getBlocks() {
+        return blocks;
+    }
+
+
 }

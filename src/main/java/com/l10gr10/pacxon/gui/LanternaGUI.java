@@ -103,4 +103,17 @@ public class LanternaGUI implements GUI {
 
         return ACTION.NONE;
     }
+
+    @Override
+    public void drawBlock(Position position, String color) {
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setBackgroundColor(TextColor.Factory.fromString(color));
+        tg.putString(position.getX(), position.getY(), "□");
+    }
+
+    @Override
+    public int getScreenWidth() {
+        return screen.getTerminalSize().getColumns();
+    }
+
 }

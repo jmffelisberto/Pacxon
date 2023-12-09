@@ -15,4 +15,8 @@ public interface GUI {
     void drawText(Position position, String text, String color);
 
     GUI.ACTION getNextAction() throws IOException;
+
+    void drawBlock(Position position, String color);
+
+    int getScreenWidth();
 }
