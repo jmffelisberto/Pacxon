@@ -7,7 +7,10 @@ import com.l10gr10.pacxon.model.game.display.Stats;
 import com.l10gr10.pacxon.model.game.elements.statik.Block;
 import com.l10gr10.pacxon.view.Viewer;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 
 public class GameViewer extends Viewer<Display> {
     public GameViewer(Display display) {
@@ -19,6 +22,7 @@ public class GameViewer extends Viewer<Display> {
         int startY = 0;
         drawStats(gui, startY);
         drawBoard(gui);
+        drawPacxon(gui);
     }
 
 
@@ -46,4 +50,11 @@ public class GameViewer extends Viewer<Display> {
         gui.drawText(new Position(livesText.length() + spacing, startY), scoreText, "#FFD700");
         gui.drawText(new Position(livesText.length() + scoreText.length() + spacing * 2, startY), progressText, "#FFD700");
     }
+
+    private void drawPacxon(GUI gui) {
+        Position pacxonPosition = getModel().getBoard().getPacxon().getPosition();
+        String pacxonCharacter = "P";
+        gui.drawText(new Position(pacxonPosition.getX(), pacxonPosition.getY() + 4), pacxonCharacter, "#FFFF00");
+    }
+
 }

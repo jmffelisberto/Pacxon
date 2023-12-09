@@ -108,7 +108,7 @@ public class LanternaGUI implements GUI {
     public void drawBlock(Position position, String color) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setBackgroundColor(TextColor.Factory.fromString(color));
-        tg.putString(position.getX(), position.getY(), "□");
+        tg.putString(position.getX(), position.getY(), "_");
     }
 
     @Override

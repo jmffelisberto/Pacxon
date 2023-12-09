@@ -36,10 +36,16 @@ public class Board {
                 blocks[y][x] = new Block(position, isPerimeter);
             }
         }
+
+        pacxon = new Pacxon(new Position(0, 0), 3);
     }
 
     public Block[][] getBlocks() {
         return blocks;
+    }
+
+    public Pacxon getPacxon() {
+        return pacxon;
     }
 
 
