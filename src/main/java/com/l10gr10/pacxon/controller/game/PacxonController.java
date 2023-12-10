@@ -15,6 +15,7 @@ public class PacxonController extends Controller<Board> {
     @Override
     public void handleInput(Main main, GUI.ACTION action, long time) {
         Pacxon pacxon = getModel().getPacxon();
+        Position oldPosition = pacxon.getPosition();
         Position newPosition = null;
 
         switch (action) {
@@ -34,6 +35,12 @@ public class PacxonController extends Controller<Board> {
 
         if (newPosition != null && isValidMove(newPosition)) {
             pacxon.setPosition(newPosition);
+            if (isStartingFill(oldPosition, newPosition) || getModel().getBlockAt(oldPosition).isTrail()) {
+                getModel().addToTrail(newPosition);
+            }
+            if (isCompletingFill(oldPosition, newPosition)) {
+                getModel().completeFill();
+            }
         }
     }
 
@@ -43,5 +50,17 @@ public class PacxonController extends Controller<Board> {
         int boardHeight = getModel().getHeight();
         return position.getX() >= 0 && position.getX() < boardWidth &&
                 position.getY() >= 0 && position.getY() < boardHeight;
+    }
+
+    //check is pacXon goes from fill to unfill blocl
+    private boolean isStartingFill(Position oldPosition, Position newPosition) {
+        return getModel().getBlockAt(oldPosition).isFilled() &&
+                !getModel().getBlockAt(newPosition).isFilled();
+    }
+
+    //check if pacXon goes from unfill to fill block
+    private boolean isCompletingFill(Position oldPosition, Position newPosition) {
+        return !getModel().getBlockAt(oldPosition).isFilled() &&
+                getModel().getBlockAt(newPosition).isFilled();
     }
 }

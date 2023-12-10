@@ -18,6 +18,7 @@ public class Board {
     private List<Monster> monsters;
     private List<Beer> beers;
     private List<Heart> hearts;
+    private List<Position> trailPositions = new ArrayList<>();
 
 
     public Board(int width, int height) {
@@ -54,6 +55,30 @@ public class Board {
 
     public int getHeight() {
         return height;
+    }
+
+    public void startFill(Position startPosition) {
+        trailPositions.clear();
+        addToTrail(startPosition);
+    }
+
+    public void completeFill() {
+        for (Position pos : trailPositions) {
+            getBlockAt(pos).setFilled(true);
+            getBlockAt(pos).setTrail(false);
+        }
+        trailPositions.clear();
+    }
+
+    public void addToTrail(Position position) {
+        if (!getBlockAt(position).isTrail()) {
+            trailPositions.add(position);
+            getBlockAt(position).setTrail(true);
+        }
+    }
+
+    public Block getBlockAt(Position position) {
+        return blocks[position.getY()][position.getX()];
     }
 
 }

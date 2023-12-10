@@ -30,7 +30,15 @@ public class GameViewer extends Viewer<Display> {
         Block[][] blocks = getModel().getBoard().getBlocks();
         for (int y = 0; y < blocks.length; y++) {
             for (int x = 0; x < blocks[y].length; x++) {
-                String color = blocks[y][x].isFilled() ? "#0000FF" : "#9D9DFF";
+                Block block = blocks[y][x];
+                String color;
+                if (block.isFilled()) {
+                    color = "#002fff";  // Filled Block
+                } else if (block.isTrail()) {
+                    color = "#7583E2";  // Trail blocks
+                } else {
+                    color = "#000000";  // Unfilled blocks
+                }
                 gui.drawBlock(new Position(x, y + 4), color);
             }
         }
