@@ -4,13 +4,16 @@ import com.l10gr10.pacxon.gui.GUI;
 import com.l10gr10.pacxon.model.Position;
 import com.l10gr10.pacxon.model.game.display.Display;
 import com.l10gr10.pacxon.model.game.display.Stats;
+import com.l10gr10.pacxon.model.game.elements.nonstatic.Monster;
 import com.l10gr10.pacxon.model.game.elements.statik.Block;
 import com.l10gr10.pacxon.view.Viewer;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 public class GameViewer extends Viewer<Display> {
     public GameViewer(Display display) {
@@ -23,6 +26,7 @@ public class GameViewer extends Viewer<Display> {
         drawStats(gui, startY);
         drawBoard(gui);
         drawPacxon(gui);
+        drawMonsters(gui);
     }
 
 
@@ -63,6 +67,15 @@ public class GameViewer extends Viewer<Display> {
         Position pacxonPosition = getModel().getBoard().getPacxon().getPosition();
         String pacxonCharacter = "P";
         gui.drawText(new Position(pacxonPosition.getX(), pacxonPosition.getY() + 4), pacxonCharacter, "#FFFF00");
+    }
+
+    private void drawMonsters(GUI gui){
+        List<Monster> monsters = getModel().getBoard().getMonsters();
+        String monsterCharacter = "M";
+        for (Monster monster : monsters){
+            Position helper = new Position(monster.getPosition().getX(), monster.getPosition().getY() + 4);
+            gui.drawText(helper, monsterCharacter, "#FFFF00");
+        }
     }
 
 }
