@@ -6,9 +6,8 @@ public class Display {
     private Stats stats;
 
     public Display(int width, int height) {
-
-        this.board = new Board(width, height);
         this.stats = new Stats();
+        this.board = new Board(width, height, this.stats);
     }
 
     public Board getBoard() {

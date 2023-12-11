@@ -16,12 +16,12 @@ public class GameController extends Controller<Display> {
         super(display);
         this.pacxonController = new PacxonController(display.getBoard());
         this.monstersController = new MonstersController(display.getBoard());
+
     }
 
     @Override
     public void handleInput(Main main, GUI.ACTION action, long time) {
         pacxonController.handleInput(main, action, time);
-        //action for monstersController...
         monstersController.handleInput(main, action, time);
     }
 

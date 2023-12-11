@@ -21,5 +21,15 @@ public class Stats {
     public int getProgressPercentage() {
         return progressPercentage;
     }
+
+    public void addScore(int points) {
+        this.score += points;
+    }
+
+    public void updateProgress(int filledBlocks, int totalBlocks) {
+        this.progressPercentage = (int)(((double) filledBlocks / totalBlocks) * 100);
+    }
+
+
 }
 

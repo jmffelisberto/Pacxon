@@ -20,13 +20,16 @@ public class Board {
     private List<Heart> hearts;
     private List<Position> trailPositions = new ArrayList<>();
 
+    private Stats stats;
 
-    public Board(int width, int height) {
+
+    public Board(int width, int height, Stats stats) {
         this.width = width;
         this.height = height;
         this.blocks = new Block[height][width];
         this.beers = new ArrayList<Beer>();
         this.monsters = new ArrayList<Monster>();
+        this.stats = stats;
         initializeBoard();
     }
 
@@ -73,11 +76,31 @@ public class Board {
     }
 
     public void completeFill() {
+        int newlyFilledBlocks = 0;
         for (Position pos : trailPositions) {
-            getBlockAt(pos).setFilled(true);
-            getBlockAt(pos).setTrail(false);
+            Block block = getBlockAt(pos);
+            if (!block.isFilled()) {
+                block.setFilled(true);
+                newlyFilledBlocks++;
+            }
+            block.setTrail(false);
         }
         trailPositions.clear();
+
+        stats.addScore(newlyFilledBlocks * 10); // 10 points per block
+        stats.updateProgress(calculateFilledBlocks(), (width-2) * (height- 2));
+    }
+
+    private int calculateFilledBlocks() {
+        int filledCount = 0;
+        for (int y = 1; y < height - 1; y++) {
+            for (int x = 1; x < width - 1; x++) {
+                if (blocks[y][x].isFilled()) {
+                    filledCount++;
+                }
+            }
+        }
+        return filledCount;
     }
 
     public void addToTrail(Position position) {
