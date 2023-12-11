@@ -41,9 +41,10 @@ public class Board {
 
         pacxon = new Pacxon(new Position(0, 0), 3);
         monsters.add(new Monster(new Position(3, 7)));
-        monsters.add(new Monster(new Position(6, 20)));
+        monsters.add(new Monster(new Position(6, 19)));
         monsters.add(new Monster(new Position(12, 2)));
         monsters.add(new Monster(new Position(30, 15)));
+        //y cant be bigger that 19!
     }
 
     public Block[][] getBlocks() {
