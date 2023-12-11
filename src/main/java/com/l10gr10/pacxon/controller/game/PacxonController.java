@@ -5,7 +5,9 @@ import com.l10gr10.pacxon.controller.Controller;
 import com.l10gr10.pacxon.gui.GUI;
 import com.l10gr10.pacxon.model.Position;
 import com.l10gr10.pacxon.model.game.display.Board;
+import com.l10gr10.pacxon.model.game.display.Stats;
 import com.l10gr10.pacxon.model.game.elements.nonstatic.Pacxon;
+
 
 public class PacxonController extends Controller<Board> {
     public PacxonController(Board board) {
@@ -42,6 +44,7 @@ public class PacxonController extends Controller<Board> {
                 getModel().completeFill();
             }
         }
+
     }
 
 
