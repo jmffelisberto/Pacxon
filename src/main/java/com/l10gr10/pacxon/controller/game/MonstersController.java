@@ -13,16 +13,24 @@ import java.util.List;
 
 public class MonstersController extends Controller<Board> {
 
+    private static final int MONSTER_MOVE_DELAY = 500;
+    private long lastMoveTime;
+
     public MonstersController(Board model) {
         super(model);
+        this.lastMoveTime = System.currentTimeMillis();
     }
 
     @Override
     public void handleInput(Main main, GUI.ACTION action, long time) {
-        //doesnt really have input for now
+        long currentTime = System.currentTimeMillis();
+        long elapsedTime = currentTime - lastMoveTime;
         List<Monster> monsters = getModel().getMonsters();
-        for (Monster monster : monsters) {
-            moveRandomly(monster);
+        if (elapsedTime >= MONSTER_MOVE_DELAY) {
+            for (Monster monster : monsters) {
+                moveRandomly(monster);
+            }
+            lastMoveTime = System.currentTimeMillis();
         }
     }
 
