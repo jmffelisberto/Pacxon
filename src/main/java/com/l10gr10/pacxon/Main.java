@@ -60,6 +60,7 @@ public class Main {
             getInstance().start();
         } catch (IOException | URISyntaxException | FontFormatException e) {
             e.printStackTrace();
+
         }
     }
 }

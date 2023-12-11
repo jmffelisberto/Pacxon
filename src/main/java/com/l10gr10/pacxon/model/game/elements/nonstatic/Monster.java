@@ -7,4 +7,10 @@ public class Monster extends Element {
     public Monster(Position position) {
         super(position);
     }
+
+    @Override
+    public Position getPosition() {
+        return super.getPosition();
+    }
+
 }
