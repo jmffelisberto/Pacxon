@@ -45,10 +45,10 @@ public class Board {
 
         pacxon = new Pacxon(new Position(0, 0), 3);
         monsters.add(new Monster(new Position(3, 7)));
-        monsters.add(new Monster(new Position(6, 19)));
+        monsters.add(new Monster(new Position(6, 18)));
         monsters.add(new Monster(new Position(12, 2)));
         monsters.add(new Monster(new Position(30, 15)));
-        //y cant be bigger that 19!
+        //y cant be bigger that 18!
         hearts.add(new Heart(new Position(16, 16)));
         hearts.add(new Heart(new Position(3, 3)));
         beers.add(new Beer((new Position(2, 18))));
@@ -118,6 +118,10 @@ public class Board {
     }
 
     public Block getBlockAt(Position position) {
+        if (position.getY() < 0 || position.getY() >= height ||
+        position.getX() < 0 || position.getX() >= width) {
+            return null;
+        }
         return blocks[position.getY()][position.getX()];
     }
 
