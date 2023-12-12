@@ -5,7 +5,9 @@ import com.l10gr10.pacxon.model.Position;
 import com.l10gr10.pacxon.model.game.display.Display;
 import com.l10gr10.pacxon.model.game.display.Stats;
 import com.l10gr10.pacxon.model.game.elements.nonstatic.Monster;
+import com.l10gr10.pacxon.model.game.elements.statik.Beer;
 import com.l10gr10.pacxon.model.game.elements.statik.Block;
+import com.l10gr10.pacxon.model.game.elements.statik.Heart;
 import com.l10gr10.pacxon.view.Viewer;
 
 import javax.imageio.ImageIO;
@@ -27,6 +29,7 @@ public class GameViewer extends Viewer<Display> {
         drawBoard(gui);
         drawPacxon(gui);
         drawMonsters(gui);
+        drawPowerUps(gui);
     }
 
 
@@ -75,6 +78,29 @@ public class GameViewer extends Viewer<Display> {
         for (Monster monster : monsters){
             Position helper = new Position(monster.getPosition().getX(), monster.getPosition().getY() + 4);
             gui.drawText(helper, monsterCharacter, "#FFFF00");
+        }
+    }
+
+    private void drawPowerUps(GUI gui){
+        drawBeers(gui);
+        drawHearts(gui);
+    }
+
+    private void drawHearts(GUI gui) {
+        List<Heart> hearts = getModel().getBoard().getHearts();
+        String heartCharacter = "H";
+        for (Heart heart : hearts){
+            Position helper = new Position(heart.getPosition().getX(), heart.getPosition().getY() + 4);
+            gui.drawText(helper, heartCharacter, "#FFFF00");
+        }
+    }
+
+    private void drawBeers(GUI gui) {
+        List<Beer> beers = getModel().getBoard().getBeers();
+        String beerCharacter = "B";
+        for (Beer Beer : beers){
+            Position helper = new Position(Beer.getPosition().getX(), Beer.getPosition().getY() + 4);
+            gui.drawText(helper, beerCharacter, "#FFFF00");
         }
     }
 

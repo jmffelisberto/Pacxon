@@ -27,6 +27,7 @@ public class Board {
         this.width = width;
         this.height = height;
         this.blocks = new Block[height][width];
+        this.hearts = new ArrayList<Heart>();
         this.beers = new ArrayList<Beer>();
         this.monsters = new ArrayList<Monster>();
         this.stats = stats;
@@ -48,6 +49,11 @@ public class Board {
         monsters.add(new Monster(new Position(12, 2)));
         monsters.add(new Monster(new Position(30, 15)));
         //y cant be bigger that 19!
+        hearts.add(new Heart(new Position(16, 16)));
+        hearts.add(new Heart(new Position(3, 3)));
+        beers.add(new Beer((new Position(2, 18))));
+        beers.add(new Beer(new Position(10, 2)));
+        beers.add(new Beer(new Position(6, 12)));
     }
 
     public Block[][] getBlocks() {
@@ -122,4 +128,11 @@ public class Board {
         trailPositions.clear();
     }
 
+    public List<Heart> getHearts() {
+        return this.hearts;
+    }
+
+    public List<Beer> getBeers() {
+        return this.beers;
+    }
 }
