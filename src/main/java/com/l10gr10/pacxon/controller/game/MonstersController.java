@@ -6,6 +6,7 @@ import com.l10gr10.pacxon.gui.GUI;
 import com.l10gr10.pacxon.model.Position;
 import com.l10gr10.pacxon.model.game.display.Board;
 import com.l10gr10.pacxon.model.game.elements.nonstatic.Monster;
+import com.l10gr10.pacxon.model.game.elements.statik.Block;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,8 +45,15 @@ public class MonstersController extends Controller<Board> {
     private boolean isValidMove(Position newPosition) {
         int boardWidth = getModel().getWidth();
         int boardHeight = getModel().getHeight();
-        return newPosition.getX() >= 0 && newPosition.getX() < boardWidth &&
-                newPosition.getY() >= 0 && newPosition.getY() < boardHeight;
+        boolean withinBounds = newPosition.getX() > 0 && newPosition.getX() < (boardWidth-1) &&
+                newPosition.getY() > 0 && newPosition.getY() < (boardHeight-1);
+
+        if (!withinBounds) {
+            return false;
+        }
+
+        Block block = getModel().getBlockAt(newPosition);
+        return !block.isFilled();
     }
 
     public void moveRandomly(Monster monster) {
