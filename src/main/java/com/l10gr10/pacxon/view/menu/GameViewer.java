@@ -24,7 +24,7 @@ public class GameViewer extends Viewer<Display> {
 
     @Override
     protected void drawElements(GUI gui) throws IOException {
-        int startY = 0;
+        int startY = 24;
         drawStats(gui, startY);
         drawBoard(gui);
         drawPacxon(gui);
@@ -55,16 +55,28 @@ public class GameViewer extends Viewer<Display> {
     private void drawStats(GUI gui, int startY) throws IOException {
         int terminalWidth = gui.getScreenWidth();
 
+        String pacxonText = "PACXON";
         String livesText = "Lives: " + getModel().getStats().getLives();
         String scoreText = "Score: " + getModel().getStats().getScore();
         String progressText = "Progress: " + getModel().getStats().getProgressPercentage() + "/80%";
 
-        int spacing = (terminalWidth - (livesText.length() + scoreText.length() + progressText.length())) / 2;
+        int pacxonSpacing = (terminalWidth - pacxonText.length()) / 2;
+        int progressSpacing = (terminalWidth - progressText.length()) / 2;
 
-        gui.drawText(new Position(0, startY), livesText, "#FFD700");
-        gui.drawText(new Position(livesText.length() + spacing, startY), scoreText, "#FFD700");
-        gui.drawText(new Position(livesText.length() + scoreText.length() + spacing * 2, startY), progressText, "#FFD700");
+        // Draw "pacxon" at the top
+        gui.drawText(new Position(pacxonSpacing, 1), pacxonText, "#FFD700");
+
+        // Draw the second line with progress centered
+        gui.drawText(new Position(progressSpacing, startY), progressText, "#FFD700");
+
+        // Draw the third line with lives on the left and score on the right
+        gui.drawText(new Position(0, startY + 1), livesText, "#FFD700");
+        gui.drawText(new Position(terminalWidth - scoreText.length(), startY + 1), scoreText, "#FFD700");
     }
+
+
+
+
 
     private void drawPacxon(GUI gui) {
         Position pacxonPosition = getModel().getBoard().getPacxon().getPosition();
