@@ -15,11 +15,10 @@ public class WinMenuViewer extends Viewer<WinMenu> {
     @Override
     protected void drawElements(GUI gui) throws IOException {
         gui.drawText(new Position(12, 3), "YOU WIN!", "Blue");
-
+        //just something to change for the tag demo
 
         gui.drawText(new Position(8, 7), "Congratulations!", "#FFFFFF");
-        //gui.drawText(new Position(1, 9), "Choose if you want to go to the", "#FFFFFF");
-        //gui.drawText(new Position(0, 10), "main menu or quit the game:", "#FFFFFF");
+
 
         for (int i = 0; i < getModel().getNumEntries(); i++) {
             String color = getModel().isSelected(i) ? "#FFD700" : "#FFFFFF";
