@@ -31,5 +31,8 @@ public class Stats {
     }
 
 
+    public void decreaseLife() {
+        this.lives--;
+    }
 }
 
