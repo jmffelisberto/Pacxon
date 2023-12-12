@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.l10gr10.pacxon.model.PositionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-26T23:41:15" hostname="ZEZAO" time="0.013">
-  <properties/>
-  <testcase name="testGetPositionY()" classname="com.l10gr10.pacxon.model.PositionTest" time="0.013"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

@@ -9,7 +9,9 @@ import com.l10gr10.pacxon.model.game.display.Stats;
 import com.l10gr10.pacxon.model.game.elements.nonstatic.Monster;
 import com.l10gr10.pacxon.model.game.elements.nonstatic.Pacxon;
 import com.l10gr10.pacxon.model.menu.GameOverMenu;
+import com.l10gr10.pacxon.model.menu.WinMenu;
 import com.l10gr10.pacxon.states.GameOverState;
+import com.l10gr10.pacxon.states.WinMenuState;
 
 
 public class PacxonController extends Controller<Board> {
@@ -50,6 +52,8 @@ public class PacxonController extends Controller<Board> {
             }
         }
 
+
+
         if (newPosition != null && isValidMove(newPosition)) {
             pacxon.setPosition(newPosition);
             if (isStartingFill(oldPosition, newPosition) || getModel().getBlockAt(oldPosition).isTrail()) {
@@ -59,6 +63,9 @@ public class PacxonController extends Controller<Board> {
                 getModel().completeFill();
             }
         }
+
+        if(getModel().getStats().getProgressPercentage() >= 80)
+            main.setState(new WinMenuState(new WinMenu()));
 
 
     }
