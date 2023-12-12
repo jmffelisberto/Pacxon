@@ -1,5 +1,6 @@
 package com.l10gr10.pacxon.model.game.display;
 
+import com.l10gr10.pacxon.controller.game.MonstersController;
 import com.l10gr10.pacxon.model.Position;
 import com.l10gr10.pacxon.model.game.elements.nonstatic.Monster;
 import com.l10gr10.pacxon.model.game.elements.nonstatic.Pacxon;
@@ -21,6 +22,8 @@ public class Board {
     private List<Position> trailPositions = new ArrayList<>();
 
     private Stats stats;
+
+    private MonstersController monstersController;
 
 
     public Board(int width, int height, Stats stats) {
@@ -49,11 +52,7 @@ public class Board {
         monsters.add(new Monster(new Position(12, 2)));
         monsters.add(new Monster(new Position(30, 15)));
         //y cant be bigger that 18!
-        hearts.add(new Heart(new Position(16, 16)));
-        hearts.add(new Heart(new Position(3, 3)));
-        beers.add(new Beer((new Position(2, 18))));
-        beers.add(new Beer(new Position(10, 2)));
-        beers.add(new Beer(new Position(6, 12)));
+
     }
 
     public Block[][] getBlocks() {
@@ -138,5 +137,13 @@ public class Board {
 
     public List<Beer> getBeers() {
         return this.beers;
+    }
+
+    public void setMonstersController(MonstersController controller){
+        this.monstersController = controller;
+    }
+
+    public MonstersController getMonstersController() {
+        return this.monstersController;
     }
 }

@@ -17,6 +17,10 @@ public class MonstersController extends Controller<Board> {
     private static final int MONSTER_MOVE_DELAY = 500;
     private long lastMoveTime;
 
+    private boolean isSlowedDown = false;
+
+    private long slowDownEndTime;
+
     public MonstersController(Board model) {
         super(model);
         this.lastMoveTime = System.currentTimeMillis();
@@ -25,10 +29,13 @@ public class MonstersController extends Controller<Board> {
     @Override
     public void handleInput(Main main, GUI.ACTION action, long time) {
         long currentTime = System.currentTimeMillis();
-        long elapsedTime = currentTime - lastMoveTime;
-        List<Monster> monsters = getModel().getMonsters();
-        if (elapsedTime >= MONSTER_MOVE_DELAY) {
-            for (Monster monster : monsters) {
+
+        long effectiveDelay = isSlowedDown && currentTime < slowDownEndTime
+                ? 3 * MONSTER_MOVE_DELAY
+                : MONSTER_MOVE_DELAY / 3;
+
+        if (currentTime - lastMoveTime >= effectiveDelay) {
+            for (Monster monster : getModel().getMonsters()) {
                 moveRandomly(monster);
                 if (checkMonsterTrailCollision(monster)) {
                     getModel().resetTrail();
@@ -36,10 +43,8 @@ public class MonstersController extends Controller<Board> {
                     break;
                 }
             }
-            lastMoveTime = System.currentTimeMillis();
+            lastMoveTime = currentTime;
         }
-
-
     }
 
     private boolean isValidMove(Position newPosition) {
@@ -71,4 +76,8 @@ public class MonstersController extends Controller<Board> {
         return trailPositions.contains(monster.getPosition());
     }
 
+    public void slowDownMonsters(long duration) {
+        this.isSlowedDown = true;
+        this.slowDownEndTime = System.currentTimeMillis() + duration;
+    }
 }
