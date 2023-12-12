@@ -56,6 +56,7 @@ public class GameViewer extends Viewer<Display> {
         int terminalWidth = gui.getScreenWidth();
 
         String pacxonText = "PACXON";
+        String quitGameText = "Press 'q' to quit";
         String livesText = "Lives: " + getModel().getStats().getLives();
         String scoreText = "Score: " + getModel().getStats().getScore();
         String progressText = "Progress: " + getModel().getStats().getProgressPercentage() + "/80%";
@@ -65,6 +66,7 @@ public class GameViewer extends Viewer<Display> {
 
         // Draw "pacxon" at the top
         gui.drawText(new Position(pacxonSpacing, 1), pacxonText, "#FFD700");
+        gui.drawText(new Position(8, 2), quitGameText, "#00FF00");
 
         // Draw the second line with progress centered
         gui.drawText(new Position(progressSpacing, startY), progressText, "#FFD700");

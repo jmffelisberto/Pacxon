@@ -37,12 +37,15 @@ public class PacxonController extends Controller<Board> {
             case RIGHT:
                 newPosition = new Position(pacxon.getPosition().getX() + 1, pacxon.getPosition().getY());
                 break;
+            case QUIT:
+                main.setState(new GameOverState(new GameOverMenu()));
+                break;
         }
 
         if (checkPacxonMonsterCollision()) {
             Board board = getModel();
             board.getStats().decreaseLife();
-            if (board.getStats().getLives() <= 0) {
+            if (board.getStats().getLives() < 1) {
                 main.setState(new GameOverState(new GameOverMenu()));
             }
         }
