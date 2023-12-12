@@ -8,6 +8,8 @@ import com.l10gr10.pacxon.model.game.display.Board;
 import com.l10gr10.pacxon.model.game.display.Stats;
 import com.l10gr10.pacxon.model.game.elements.nonstatic.Monster;
 import com.l10gr10.pacxon.model.game.elements.nonstatic.Pacxon;
+import com.l10gr10.pacxon.model.menu.GameOverMenu;
+import com.l10gr10.pacxon.states.GameOverState;
 
 
 public class PacxonController extends Controller<Board> {
@@ -41,7 +43,7 @@ public class PacxonController extends Controller<Board> {
             Board board = getModel();
             board.getStats().decreaseLife();
             if (board.getStats().getLives() <= 0) {
-                //TO IMPLEMENT -> GAME OVER
+                main.setState(new GameOverState(new GameOverMenu()));
             }
         }
 
