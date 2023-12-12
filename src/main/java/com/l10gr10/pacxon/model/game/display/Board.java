@@ -66,13 +66,14 @@ public class Board {
         return height;
     }
 
+    public Stats getStats() {return stats;}
+
     public List<Monster> getMonsters() {
         return monsters;
     }
 
-    public void startFill(Position startPosition) {
-        trailPositions.clear();
-        addToTrail(startPosition);
+    public List<Position> getTrailPositions() {
+        return trailPositions;
     }
 
     public void completeFill() {
@@ -112,6 +113,13 @@ public class Board {
 
     public Block getBlockAt(Position position) {
         return blocks[position.getY()][position.getX()];
+    }
+
+    public void resetTrail() {
+        for (Position pos : trailPositions) {
+            getBlockAt(pos).setTrail(false);
+        }
+        trailPositions.clear();
     }
 
 }

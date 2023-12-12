@@ -6,6 +6,7 @@ import com.l10gr10.pacxon.gui.GUI;
 import com.l10gr10.pacxon.model.Position;
 import com.l10gr10.pacxon.model.game.display.Board;
 import com.l10gr10.pacxon.model.game.display.Stats;
+import com.l10gr10.pacxon.model.game.elements.nonstatic.Monster;
 import com.l10gr10.pacxon.model.game.elements.nonstatic.Pacxon;
 
 
@@ -18,6 +19,7 @@ public class PacxonController extends Controller<Board> {
     public void handleInput(Main main, GUI.ACTION action, long time) {
         Pacxon pacxon = getModel().getPacxon();
         Position oldPosition = pacxon.getPosition();
+        pacxon.updateInvulnerability();
         Position newPosition = null;
 
         switch (action) {
@@ -35,6 +37,14 @@ public class PacxonController extends Controller<Board> {
                 break;
         }
 
+        if (checkPacxonMonsterCollision()) {
+            Board board = getModel();
+            board.getStats().decreaseLife();
+            if (board.getStats().getLives() <= 0) {
+                //TO IMPLEMENT -> GAME OVER
+            }
+        }
+
         if (newPosition != null && isValidMove(newPosition)) {
             pacxon.setPosition(newPosition);
             if (isStartingFill(oldPosition, newPosition) || getModel().getBlockAt(oldPosition).isTrail()) {
@@ -44,6 +54,7 @@ public class PacxonController extends Controller<Board> {
                 getModel().completeFill();
             }
         }
+
 
     }
 
@@ -65,5 +76,20 @@ public class PacxonController extends Controller<Board> {
     private boolean isCompletingFill(Position oldPosition, Position newPosition) {
         return !getModel().getBlockAt(oldPosition).isFilled() &&
                 getModel().getBlockAt(newPosition).isFilled();
+    }
+
+
+    private boolean checkPacxonMonsterCollision() {
+        Pacxon pacxon = getModel().getPacxon();
+        if (!getModel().getPacxon().isInvulnerable()) {
+            Position pacxonPosition = getModel().getPacxon().getPosition();
+            for (Monster monster : getModel().getMonsters()) {
+                if (pacxonPosition.equals(monster.getPosition())) {
+                    pacxon.makeInvulnerable(2000);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -29,9 +29,16 @@ public class MonstersController extends Controller<Board> {
         if (elapsedTime >= MONSTER_MOVE_DELAY) {
             for (Monster monster : monsters) {
                 moveRandomly(monster);
+                if (checkMonsterTrailCollision(monster)) {
+                    getModel().resetTrail();
+                    getModel().getStats().decreaseLife();
+                    break;
+                }
             }
             lastMoveTime = System.currentTimeMillis();
         }
+
+
     }
 
     private boolean isValidMove(Position newPosition) {
@@ -49,6 +56,11 @@ public class MonstersController extends Controller<Board> {
         if (isValidMove(newPosition)) {
             monster.setPosition(newPosition);
         }
+    }
+
+    private boolean checkMonsterTrailCollision(Monster monster) {
+        List<Position> trailPositions = getModel().getTrailPositions();
+        return trailPositions.contains(monster.getPosition());
     }
 
 }
