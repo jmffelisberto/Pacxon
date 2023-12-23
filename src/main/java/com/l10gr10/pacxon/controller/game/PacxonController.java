@@ -71,7 +71,7 @@ public class PacxonController extends Controller<Board> {
     }
 
 
-    private boolean isValidMove(Position position) {
+    boolean isValidMove(Position position) {
         int boardWidth = getModel().getWidth();
         int boardHeight = getModel().getHeight();
         return position.getX() >= 0 && position.getX() < boardWidth &&

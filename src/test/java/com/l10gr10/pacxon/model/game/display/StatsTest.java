@@ -11,7 +11,6 @@ class StatsTest {
 
     @BeforeEach
     void setUp() {
-        // Initialize a new Stats object for each test
         stats = new Stats();
     }
 
@@ -30,8 +29,6 @@ class StatsTest {
 
         // Ensure that the score is updated correctly
         assertEquals(50, stats.getScore());
-
-        // Add more tests for different scenarios
     }
 
     @Test
@@ -41,11 +38,5 @@ class StatsTest {
 
         // Ensure that the progressPercentage is updated correctly
         assertEquals(25, stats.getProgressPercentage());
-
-        // Add more tests for different scenarios
     }
-
-    // Add more tests for other methods and functionalities of the Stats class
-
-
 }

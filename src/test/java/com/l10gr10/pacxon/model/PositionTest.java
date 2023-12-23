@@ -58,6 +58,4 @@ class PositionTest {
         assertEquals(position1, position2);
         assertNotEquals(position1, position3);
     }
-
-
 }

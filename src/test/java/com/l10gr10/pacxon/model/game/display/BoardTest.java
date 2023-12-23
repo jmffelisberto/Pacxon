@@ -38,13 +38,11 @@ class BoardTest {
 
     @Test
     void testGetPacxon() {
-        // Ensure that the Pacxon object is not null
         assert board.getPacxon() != null;
     }
 
     @Test
     void testGetMonsters() {
-        // Ensure that the monsters list is not null
         assert board.getMonsters() != null;
     }
 

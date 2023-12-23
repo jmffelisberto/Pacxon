@@ -26,7 +26,6 @@ class GameOverViewerTest {
     public void testDraw() throws IOException {
         gameOverViewer.draw(gui);
 
-        // Verify that draw method calls drawText the correct number of times
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(12, 3), "GAME OVER!", "Blue");
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(12, 7), "You lost!", "#FFFFFF");
 
@@ -43,7 +42,6 @@ class GameOverViewerTest {
     public void testDrawElements() throws IOException {
         gameOverViewer.drawElements(gui);
 
-        // Update the expected number of invocations based on your actual drawElements implementation
         Mockito.verify(gui, Mockito.times(2)).drawText(Mockito.any(), Mockito.any(), Mockito.any());
     }
 }

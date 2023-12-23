@@ -1,0 +1,187 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > MonstersController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.l10gr10.pacxon.controller.game</a>
+</div>
+
+<h1>Coverage Summary for Class: MonstersController (com.l10gr10.pacxon.controller.game)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MonstersController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/33)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.l10gr10.pacxon.controller.game;
+&nbsp;
+&nbsp;import com.l10gr10.pacxon.Main;
+&nbsp;import com.l10gr10.pacxon.controller.Controller;
+&nbsp;import com.l10gr10.pacxon.gui.GUI;
+&nbsp;import com.l10gr10.pacxon.model.Position;
+&nbsp;import com.l10gr10.pacxon.model.game.display.Board;
+&nbsp;import com.l10gr10.pacxon.model.game.elements.nonstatic.Monster;
+&nbsp;import com.l10gr10.pacxon.model.game.elements.statik.Block;
+&nbsp;
+&nbsp;import javax.swing.*;
+&nbsp;import java.awt.*;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public class MonstersController extends Controller&lt;Board&gt; {
+&nbsp;
+&nbsp;    private static final int MONSTER_MOVE_DELAY = 500;
+&nbsp;    private long lastMoveTime;
+&nbsp;
+<b class="nc">&nbsp;    private boolean isSlowedDown = false;</b>
+&nbsp;
+&nbsp;    private long slowDownEndTime;
+&nbsp;
+&nbsp;    public MonstersController(Board model) {
+<b class="nc">&nbsp;        super(model);</b>
+<b class="nc">&nbsp;        this.lastMoveTime = System.currentTimeMillis();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void handleInput(Main main, GUI.ACTION action, long time) {
+<b class="nc">&nbsp;        long currentTime = System.currentTimeMillis();</b>
+&nbsp;
+<b class="nc">&nbsp;        long effectiveDelay = isSlowedDown &amp;&amp; currentTime &lt; slowDownEndTime</b>
+<b class="nc">&nbsp;                ? 3 * MONSTER_MOVE_DELAY</b>
+<b class="nc">&nbsp;                : MONSTER_MOVE_DELAY / 3;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (currentTime - lastMoveTime &gt;= effectiveDelay) {</b>
+<b class="nc">&nbsp;            for (Monster monster : getModel().getMonsters()) {</b>
+<b class="nc">&nbsp;                moveRandomly(monster);</b>
+<b class="nc">&nbsp;                if (checkMonsterTrailCollision(monster)) {</b>
+<b class="nc">&nbsp;                    getModel().resetTrail();</b>
+<b class="nc">&nbsp;                    getModel().getStats().decreaseLife();</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                }
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            lastMoveTime = currentTime;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private boolean isValidMove(Position newPosition) {
+<b class="nc">&nbsp;        int boardWidth = getModel().getWidth();</b>
+<b class="nc">&nbsp;        int boardHeight = getModel().getHeight();</b>
+<b class="nc">&nbsp;        boolean withinBounds = newPosition.getX() &gt; 0 &amp;&amp; newPosition.getX() &lt; (boardWidth-1) &amp;&amp;</b>
+<b class="nc">&nbsp;                newPosition.getY() &gt; 0 &amp;&amp; newPosition.getY() &lt; (boardHeight-1);</b>
+&nbsp;
+<b class="nc">&nbsp;        if (!withinBounds) {</b>
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        Block block = getModel().getBlockAt(newPosition);</b>
+<b class="nc">&nbsp;        return !block.isFilled();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void moveRandomly(Monster monster) {
+<b class="nc">&nbsp;        Position currentPos = monster.getPosition();</b>
+<b class="nc">&nbsp;        Position direction = monster.getRandomDirection();</b>
+<b class="nc">&nbsp;        Position newPosition = new Position(currentPos.getX() + direction.getX(), currentPos.getY() + direction.getY());</b>
+&nbsp;
+<b class="nc">&nbsp;        if (isValidMove(newPosition)) {</b>
+<b class="nc">&nbsp;            monster.setPosition(newPosition);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private boolean checkMonsterTrailCollision(Monster monster) {
+<b class="nc">&nbsp;        List&lt;Position&gt; trailPositions = getModel().getTrailPositions();</b>
+<b class="nc">&nbsp;        return trailPositions.contains(monster.getPosition());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void slowDownMonsters(long duration) {
+<b class="nc">&nbsp;        this.isSlowedDown = true;</b>
+<b class="nc">&nbsp;        this.slowDownEndTime = System.currentTimeMillis() + duration;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-23 23:42</div>
+</div>
+</body>
+</html>

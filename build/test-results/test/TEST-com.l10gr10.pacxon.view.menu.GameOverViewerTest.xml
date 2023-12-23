@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.l10gr10.pacxon.view.menu.GameOverViewerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-23T23:41:56" hostname="LAPTOP-19NCQFUK" time="2.209">
+  <properties/>
+  <testcase name="testDraw()" classname="com.l10gr10.pacxon.view.menu.GameOverViewerTest" time="2.193"/>
+  <testcase name="testDrawElements()" classname="com.l10gr10.pacxon.view.menu.GameOverViewerTest" time="0.009"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

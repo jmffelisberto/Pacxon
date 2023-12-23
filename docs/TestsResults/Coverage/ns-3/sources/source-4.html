@@ -1,0 +1,178 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > PowerUpsController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.l10gr10.pacxon.controller.game</a>
+</div>
+
+<h1>Coverage Summary for Class: PowerUpsController (com.l10gr10.pacxon.controller.game)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PowerUpsController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/29)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.l10gr10.pacxon.controller.game;
+&nbsp;
+&nbsp;import com.l10gr10.pacxon.Main;
+&nbsp;import com.l10gr10.pacxon.controller.Controller;
+&nbsp;import com.l10gr10.pacxon.gui.GUI;
+&nbsp;import com.l10gr10.pacxon.model.Position;
+&nbsp;import com.l10gr10.pacxon.model.game.display.Board;
+&nbsp;import com.l10gr10.pacxon.model.game.elements.nonstatic.Pacxon;
+&nbsp;import com.l10gr10.pacxon.model.game.elements.statik.Heart;
+&nbsp;import com.l10gr10.pacxon.model.game.elements.statik.Beer;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Random;
+&nbsp;
+&nbsp;public class PowerUpsController extends Controller&lt;Board&gt; {
+<b class="nc">&nbsp;    private long lastPowerUpTime = 0;</b>
+&nbsp;    private static final long POWER_UP_INTERVAL = 15000; // 15 for each powerUp pop-up
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void handleInput(Main main, GUI.ACTION action, long time) {
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    public PowerUpsController(Board board) {
+<b class="nc">&nbsp;        super(board);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void update(long time) {
+<b class="nc">&nbsp;        if (time - lastPowerUpTime &gt; POWER_UP_INTERVAL) {</b>
+<b class="nc">&nbsp;            lastPowerUpTime = time;</b>
+<b class="nc">&nbsp;            addRandomPowerUp();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        checkPowerUpCollisions();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void addRandomPowerUp() {
+<b class="nc">&nbsp;        Position randomPosition = getRandomPosition();</b>
+<b class="nc">&nbsp;        if (Math.random() &lt; 0.5) {</b>
+<b class="nc">&nbsp;            getModel().getHearts().add(new Heart(randomPosition));</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            getModel().getBeers().add(new Beer(randomPosition));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private Position getRandomPosition() {
+<b class="nc">&nbsp;        Random random = new Random();</b>
+&nbsp;        int x, y;
+&nbsp;        do {
+<b class="nc">&nbsp;            x = random.nextInt(getModel().getWidth());</b>
+<b class="nc">&nbsp;            y = random.nextInt(getModel().getHeight());</b>
+<b class="nc">&nbsp;        } while (getModel().getBlockAt(new Position(x, y)).isFilled());</b>
+<b class="nc">&nbsp;        return new Position(x, y);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void checkPowerUpCollisions() {
+<b class="nc">&nbsp;        Pacxon pacxon = getModel().getPacxon();</b>
+<b class="nc">&nbsp;        List&lt;Heart&gt; hearts = getModel().getHearts();</b>
+<b class="nc">&nbsp;        List&lt;Beer&gt; beers = getModel().getBeers();</b>
+&nbsp;
+<b class="nc">&nbsp;        hearts.removeIf(heart -&gt; {</b>
+<b class="nc">&nbsp;            if (heart.getPosition().equals(pacxon.getPosition())) {</b>
+<b class="nc">&nbsp;                getModel().getStats().increaseLife();</b>
+<b class="nc">&nbsp;                return true;</b>
+&nbsp;            }
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        });
+<b class="nc">&nbsp;        beers.removeIf(beer -&gt; {</b>
+<b class="nc">&nbsp;            if (beer.getPosition().equals(pacxon.getPosition())) {</b>
+<b class="nc">&nbsp;                getModel().getMonstersController().slowDownMonsters(5000);</b>
+<b class="nc">&nbsp;                return true;</b>
+&nbsp;            }
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        });
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-23 23:42</div>
+</div>
+</body>
+</html>

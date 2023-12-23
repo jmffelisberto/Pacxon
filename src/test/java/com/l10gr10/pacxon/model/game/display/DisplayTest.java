@@ -9,19 +9,16 @@ class DisplayTest {
 
     @BeforeEach
     void setUp() {
-        // Initialize a new Display with a dummy Stats object
         display = new Display(5, 5);
     }
 
     @Test
     void testGetBoard() {
-        // Ensure that the board is not null
         assert display.getBoard() != null;
     }
 
     @Test
     void testGetStats() {
-        // Ensure that the stats object is not null
         assert display.getStats() != null;
     }
 }

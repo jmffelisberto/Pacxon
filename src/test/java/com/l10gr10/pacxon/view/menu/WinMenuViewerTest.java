@@ -28,7 +28,6 @@ public class WinMenuViewerTest {
     public void drawElements() throws IOException {
         winMenuViewer.draw(gui);
 
-        // Verify that the expected drawText calls are made with the correct arguments
         verify(gui).drawText(new Position(12, 3), "YOU WIN!", "Blue");
         verify(gui).drawText(new Position(8, 7), "Congratulations!", "#FFFFFF");
 
