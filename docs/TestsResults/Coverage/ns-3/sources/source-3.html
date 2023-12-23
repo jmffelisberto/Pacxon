@@ -1,0 +1,237 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > PacxonController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.l10gr10.pacxon.controller.game</a>
+</div>
+
+<h1>Coverage Summary for Class: PacxonController (com.l10gr10.pacxon.controller.game)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PacxonController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66,7%
+  </span>
+  <span class="absValue">
+    (30/45)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PacxonController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    67,4%
+  </span>
+  <span class="absValue">
+    (31/46)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.l10gr10.pacxon.controller.game;
+&nbsp;
+&nbsp;import com.l10gr10.pacxon.Main;
+&nbsp;import com.l10gr10.pacxon.controller.Controller;
+&nbsp;import com.l10gr10.pacxon.gui.GUI;
+&nbsp;import com.l10gr10.pacxon.model.Position;
+&nbsp;import com.l10gr10.pacxon.model.game.display.Board;
+&nbsp;import com.l10gr10.pacxon.model.game.display.Stats;
+&nbsp;import com.l10gr10.pacxon.model.game.elements.nonstatic.Monster;
+&nbsp;import com.l10gr10.pacxon.model.game.elements.nonstatic.Pacxon;
+&nbsp;import com.l10gr10.pacxon.model.menu.GameOverMenu;
+&nbsp;import com.l10gr10.pacxon.model.menu.WinMenu;
+&nbsp;import com.l10gr10.pacxon.states.GameOverState;
+&nbsp;import com.l10gr10.pacxon.states.WinMenuState;
+&nbsp;
+&nbsp;
+&nbsp;public class PacxonController extends Controller&lt;Board&gt; {
+&nbsp;    public PacxonController(Board board) {
+<b class="fc">&nbsp;        super(board);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void handleInput(Main main, GUI.ACTION action, long time) {
+<b class="fc">&nbsp;        Pacxon pacxon = getModel().getPacxon();</b>
+<b class="fc">&nbsp;        Position oldPosition = pacxon.getPosition();</b>
+<b class="fc">&nbsp;        pacxon.updateInvulnerability();</b>
+<b class="fc">&nbsp;        Position newPosition = null;</b>
+&nbsp;
+<b class="fc">&nbsp;        switch (action) {</b>
+&nbsp;            case UP:
+<b class="nc">&nbsp;                newPosition = new Position(pacxon.getPosition().getX(), pacxon.getPosition().getY() - 1);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case DOWN:
+<b class="fc">&nbsp;                newPosition = new Position(pacxon.getPosition().getX(), pacxon.getPosition().getY() + 1);</b>
+<b class="fc">&nbsp;                break;</b>
+&nbsp;            case LEFT:
+<b class="nc">&nbsp;                newPosition = new Position(pacxon.getPosition().getX() - 1, pacxon.getPosition().getY());</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case RIGHT:
+<b class="fc">&nbsp;                newPosition = new Position(pacxon.getPosition().getX() + 1, pacxon.getPosition().getY());</b>
+<b class="fc">&nbsp;                break;</b>
+&nbsp;            case QUIT:
+<b class="nc">&nbsp;                main.setState(new GameOverState(new GameOverMenu()));</b>
+&nbsp;                break;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (checkPacxonMonsterCollision()) {</b>
+<b class="nc">&nbsp;            Board board = getModel();</b>
+<b class="nc">&nbsp;            board.getStats().decreaseLife();</b>
+<b class="nc">&nbsp;            if (board.getStats().getLives() &lt; 1) {</b>
+<b class="nc">&nbsp;                main.setState(new GameOverState(new GameOverMenu()));</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        if (newPosition != null &amp;&amp; isValidMove(newPosition)) {</b>
+<b class="fc">&nbsp;            getModel().getPacxon().setPosition(newPosition);</b>
+<b class="fc">&nbsp;            if (isStartingFill(oldPosition, newPosition) || getModel().getBlockAt(oldPosition).isTrail()) {</b>
+<b class="nc">&nbsp;                getModel().addToTrail(newPosition);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (isCompletingFill(oldPosition, newPosition)) {</b>
+<b class="nc">&nbsp;                getModel().completeFill();</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if(getModel().getStats().getProgressPercentage() &gt;= 80)</b>
+<b class="nc">&nbsp;            main.setState(new WinMenuState(new WinMenu()));</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    boolean isValidMove(Position position) {
+<b class="fc">&nbsp;        int boardWidth = getModel().getWidth();</b>
+<b class="fc">&nbsp;        int boardHeight = getModel().getHeight();</b>
+<b class="fc">&nbsp;        return position.getX() &gt;= 0 &amp;&amp; position.getX() &lt; boardWidth &amp;&amp;</b>
+<b class="fc">&nbsp;                position.getY() &gt;= 0 &amp;&amp; position.getY() &lt; boardHeight;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //check is pacXon goes from fill to unfill block
+&nbsp;    boolean isStartingFill(Position oldPosition, Position newPosition) {
+<b class="fc">&nbsp;        return getModel().getBlockAt(oldPosition).isFilled() &amp;&amp;</b>
+<b class="fc">&nbsp;                !getModel().getBlockAt(newPosition).isFilled();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //check if pacXon goes from unfill to fill block
+&nbsp;    boolean isCompletingFill(Position oldPosition, Position newPosition) {
+<b class="fc">&nbsp;        return !getModel().getBlockAt(oldPosition).isFilled() &amp;&amp;</b>
+<b class="nc">&nbsp;                getModel().getBlockAt(newPosition).isFilled();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private boolean checkPacxonMonsterCollision() {
+<b class="fc">&nbsp;        Pacxon pacxon = getModel().getPacxon();</b>
+<b class="fc">&nbsp;        if (!getModel().getPacxon().isInvulnerable()) {</b>
+<b class="fc">&nbsp;            Position pacxonPosition = getModel().getPacxon().getPosition();</b>
+<b class="fc">&nbsp;            for (Monster monster : getModel().getMonsters()) {</b>
+<b class="fc">&nbsp;                if (pacxonPosition.equals(monster.getPosition())) {</b>
+<b class="nc">&nbsp;                    pacxon.makeInvulnerable(2000);</b>
+<b class="nc">&nbsp;                    return true;</b>
+&nbsp;                }
+<b class="fc">&nbsp;            }</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-23 23:42</div>
+</div>
+</body>
+</html>

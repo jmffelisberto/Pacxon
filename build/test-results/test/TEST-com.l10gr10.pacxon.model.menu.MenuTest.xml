@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.l10gr10.pacxon.model.menu.MenuTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-12-23T23:41:56" hostname="LAPTOP-19NCQFUK" time="0.02">
+  <properties/>
+  <testcase name="getCurrentEntry()" classname="com.l10gr10.pacxon.model.menu.MenuTest" time="0.001"/>
+  <testcase name="isSelectedRules()" classname="com.l10gr10.pacxon.model.menu.MenuTest" time="0.001"/>
+  <testcase name="getEntryName()" classname="com.l10gr10.pacxon.model.menu.MenuTest" time="0.001"/>
+  <testcase name="getNumEntries()" classname="com.l10gr10.pacxon.model.menu.MenuTest" time="0.001"/>
+  <testcase name="previousEntry()" classname="com.l10gr10.pacxon.model.menu.MenuTest" time="0.002"/>
+  <testcase name="isSelected()" classname="com.l10gr10.pacxon.model.menu.MenuTest" time="0.002"/>
+  <testcase name="nextEntry()" classname="com.l10gr10.pacxon.model.menu.MenuTest" time="0.001"/>
+  <testcase name="isSelectedExit()" classname="com.l10gr10.pacxon.model.menu.MenuTest" time="0.001"/>
+  <testcase name="isSelectedPlay()" classname="com.l10gr10.pacxon.model.menu.MenuTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

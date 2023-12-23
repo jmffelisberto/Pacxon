@@ -22,6 +22,7 @@ public class GameViewer extends Viewer<Display> {
         super(display);
     }
 
+
     @Override
     protected void drawElements(GUI gui) throws IOException {
         int startY = 24;
@@ -33,7 +34,7 @@ public class GameViewer extends Viewer<Display> {
     }
 
 
-    private void drawBoard(GUI gui) {
+    void drawBoard(GUI gui) {
         Block[][] blocks = getModel().getBoard().getBlocks();
         for (int y = 0; y < blocks.length; y++) {
             for (int x = 0; x < blocks[y].length; x++) {
@@ -52,7 +53,7 @@ public class GameViewer extends Viewer<Display> {
     }
 
 
-    private void drawStats(GUI gui, int startY) throws IOException {
+    void drawStats(GUI gui, int startY) throws IOException {
         int terminalWidth = gui.getScreenWidth();
 
         String pacxonText = "PACXON";
@@ -80,13 +81,13 @@ public class GameViewer extends Viewer<Display> {
 
 
 
-    private void drawPacxon(GUI gui) {
+    void drawPacxon(GUI gui) {
         Position pacxonPosition = getModel().getBoard().getPacxon().getPosition();
         String pacxonCharacter = "P";
         gui.drawText(new Position(pacxonPosition.getX(), pacxonPosition.getY() + 4), pacxonCharacter, "#FFFF00");
     }
 
-    private void drawMonsters(GUI gui){
+    void drawMonsters(GUI gui){
         List<Monster> monsters = getModel().getBoard().getMonsters();
         String monsterCharacter = "M";
         for (Monster monster : monsters){
@@ -95,7 +96,7 @@ public class GameViewer extends Viewer<Display> {
         }
     }
 
-    private void drawPowerUps(GUI gui){
+    void drawPowerUps(GUI gui){
         drawBeers(gui);
         drawHearts(gui);
     }
