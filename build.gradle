@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id ("info.solidsoft.pitest") version "1.15.0"
 }
 
 group = 'com.l10gr10.pacxon'
@@ -14,6 +15,10 @@ application {
     mainClass.set('com.l10gr10.pacxon.Main')
 }
 
+pitest {
+    junit5PluginVersion = '1.2.0'
+}
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -24,6 +29,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testImplementation 'org.mockito:mockito-core:5.8.0'
 }
 
 test {

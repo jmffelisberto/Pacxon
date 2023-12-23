@@ -55,7 +55,7 @@ public class PacxonController extends Controller<Board> {
 
 
         if (newPosition != null && isValidMove(newPosition)) {
-            pacxon.setPosition(newPosition);
+            getModel().getPacxon().setPosition(newPosition);
             if (isStartingFill(oldPosition, newPosition) || getModel().getBlockAt(oldPosition).isTrail()) {
                 getModel().addToTrail(newPosition);
             }
@@ -78,14 +78,14 @@ public class PacxonController extends Controller<Board> {
                 position.getY() >= 0 && position.getY() < boardHeight;
     }
 
-    //check is pacXon goes from fill to unfill blocl
-    private boolean isStartingFill(Position oldPosition, Position newPosition) {
+    //check is pacXon goes from fill to unfill block
+    boolean isStartingFill(Position oldPosition, Position newPosition) {
         return getModel().getBlockAt(oldPosition).isFilled() &&
                 !getModel().getBlockAt(newPosition).isFilled();
     }
 
     //check if pacXon goes from unfill to fill block
-    private boolean isCompletingFill(Position oldPosition, Position newPosition) {
+    boolean isCompletingFill(Position oldPosition, Position newPosition) {
         return !getModel().getBlockAt(oldPosition).isFilled() &&
                 getModel().getBlockAt(newPosition).isFilled();
     }
