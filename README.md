@@ -21,14 +21,14 @@ For more detailed information about PacXon, please check the [Game Description](
 The following screenshots illustrate the general look of our game, as well as the divergent functionalities:
 
 <p align="center" justify="center">
-  <img src="docs/images/mainMenu.png"/>
+  <img src="docs/Images/mainMenu.png"/>
 </p>
 <p align="center">
   <b><i>Fig 1. Main Menu </i></b>
 </p>
 
 <p align="center" justify="center">
-  <img src="docs/images/rulesMenu.png"/>
+  <img src="docs/Images/rulesMenu.png"/>
 </p>
 <p align="center">
   <b><i>Fig 2. Rules Menu </i></b>
@@ -43,14 +43,14 @@ The following screenshots illustrate the general look of our game, as well as th
 </p>
 
 <p align="center" justify="center">
-  <img src="docs/images/winMenu.png"/>
+  <img src="docs/Images/winMenu.png"/>
 </p>
 <p align="center">
   <b><i>Fig 4. Win Menu </i></b>
 </p>
 
 <p align="center" justify="center">
-  <img src="docs/images/gameOverMenu.png"/>
+  <img src="docs/Images/gameOverMenu.png"/>
 </p>
 <p align="center">
   <b><i>Fig 5. Game Over Menu </i></b>
